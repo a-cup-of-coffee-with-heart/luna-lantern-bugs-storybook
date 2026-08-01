@@ -1,0 +1,248 @@
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --navy:       #1B2A4A;   /* night sky / scene background */
+  --navy-deep:  #121D33;   /* cover front */
+  --parchment:  #FBF3E7;   /* page paper */
+  --gold:       #E8B04E;   /* firefly / foil accent */
+  --coral:      #F2795A;   /* heart accent */
+  --sage:       #8FAE8B;   /* secondary illustration tone */
+  --espresso:   #4A3428;   /* body text */
+
+  --font-display: 'Baloo 2', system-ui, sans-serif;
+  --font-body:    'Quicksand', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--navy);
+  color: var(--parchment);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ============================================
+   AMBIENT SKY — drifting fireflies behind the book
+   ============================================ */
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.5), transparent);
+}
+
+.firefly {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px 3px rgba(232,176,78,.7);
+  animation: drift 9s ease-in-out infinite, glow 2.4s ease-in-out infinite;
+  opacity: .85;
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(18px, -22px); }
+  50%  { transform: translate(-10px, -40px); }
+  75%  { transform: translate(-24px, -12px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes glow {
+  0%, 100% { opacity: .4; transform: scale(1); }
+  50%      { opacity: 1;  transform: scale(1.4); }
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.nook-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 20px 8px;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .7rem;
+  color: var(--gold);
+  margin: 0 0 6px;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin: 0;
+  color: var(--parchment);
+}
+.hint {
+  margin: 10px 0 0;
+  font-size: .85rem;
+  color: rgba(251,243,231,.65);
+}
+
+/* ============================================
+   STAGE + BOOK
+   ============================================ */
+.stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 16px 8px;
+}
+
+.flipbook {
+  filter: drop-shadow(0 24px 40px rgba(0,0,0,.45));
+}
+
+.nav-arrow {
+  background: rgba(251,243,231,.1);
+  border: 1px solid rgba(251,243,231,.25);
+  color: var(--parchment);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+  flex-shrink: 0;
+}
+.nav-arrow:hover  { background: rgba(232,176,78,.25); transform: scale(1.06); }
+.nav-arrow:active { transform: scale(.94); }
+
+/* ============================================
+   PAGE STYLING (StPageFlip targets .page / .page-content)
+   ============================================ */
+.page {
+  background: var(--parchment);
+  color: var(--espresso);
+}
+.page-content {
+  height: 100%;
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.page-number {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  font-size: .75rem;
+  color: rgba(74,52,40,.45);
+}
+
+/* covers */
+.page-cover .page-content.cover {
+  align-items: center;
+  text-align: center;
+  color: var(--parchment);
+}
+.cover--front {
+  background: radial-gradient(circle at 50% 30%, var(--navy) 0%, var(--navy-deep) 75%);
+}
+.cover--back {
+  background: radial-gradient(circle at 50% 60%, var(--navy) 0%, var(--navy-deep) 75%);
+}
+.cover-badge {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+  color: var(--coral);
+}
+.cover h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  margin: 0;
+}
+.cover-sub {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--gold);
+  margin: 0;
+  letter-spacing: .03em;
+}
+
+.dedication {
+  font-style: italic;
+  text-align: center;
+  color: rgba(74,52,40,.75);
+}
+
+/* simple CSS "illustrations" — swap these for <img> tags with your own art */
+.illustration {
+  height: 130px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--sage), var(--parchment));
+  position: relative;
+  overflow: hidden;
+}
+.illustration::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(6px 6px at 20% 30%, var(--gold), transparent),
+    radial-gradient(6px 6px at 70% 60%, var(--coral), transparent),
+    radial-gradient(6px 6px at 45% 75%, var(--gold), transparent),
+    radial-gradient(6px 6px at 85% 20%, var(--coral), transparent);
+}
+
+/* ============================================
+   ENDING BURST — hearts/stars shower on last page
+   ============================================ */
+.burst-piece {
+  position: fixed;
+  top: -20px;
+  z-index: 5;
+  font-size: 1.4rem;
+  pointer-events: none;
+  animation: fall 3.2s ease-in forwards;
+}
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer-note {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: .75rem;
+  color: rgba(251,243,231,.45);
+  padding: 4px 20px 32px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .nav-arrow { width: 36px; height: 36px; font-size: 1.1rem; }
+  .page-content { padding: 24px 18px; font-size: .95rem; }
+}

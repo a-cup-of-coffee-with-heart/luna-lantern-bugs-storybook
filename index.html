@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Luna and the Lantern Bugs — A Bedtime Storybook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ambient sky layer: fireflies drift here -->
+  <div class="sky" id="sky"></div>
+
+  <header class="nook-header">
+    <p class="eyebrow">a cup of coffee with heart — storybook template</p>
+    <h1 class="title">Luna and the Lantern Bugs</h1>
+    <p class="hint" id="swipeHint">Swipe the page, or tap the arrows, to turn it →</p>
+  </header>
+
+  <main class="stage">
+    <button class="nav-arrow nav-arrow--left" id="prevBtn" aria-label="Previous page">‹</button>
+
+    <div id="book" class="flipbook">
+
+      <!-- FRONT COVER -->
+      <div class="page page-cover" data-density="hard">
+        <div class="page-content cover cover--front">
+          <div class="cover-badge">☕♥</div>
+          <h2>Luna and the<br>Lantern Bugs</h2>
+          <p class="cover-sub">a bedtime story</p>
+        </div>
+      </div>
+
+      <!-- INSIDE COVER -->
+      <div class="page" data-density="hard">
+        <div class="page-content">
+          <p class="dedication">For every little one who's afraid of the dark —<br>the fireflies are on your side.</p>
+        </div>
+      </div>
+
+      <!-- PAGE 1 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="illustration illustration--1"></div>
+          <p>Luna didn't like bedtime. The dark felt too big, and too quiet, and too full of maybes.</p>
+        </div>
+        <span class="page-number">1</span>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="illustration illustration--2"></div>
+          <p>Then, one night, a tiny light blinked outside her window. Then another. And another.</p>
+        </div>
+        <span class="page-number">2</span>
+      </div>
+
+      <!-- PAGE 3 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="illustration illustration--3"></div>
+          <p>"We're lantern bugs," they hummed. "We carry a little bit of daylight, just for nights like this."</p>
+        </div>
+        <span class="page-number">3</span>
+      </div>
+
+      <!-- PAGE 4 -->
+      <div class="page">
+        <div class="page-content">
+          <div class="illustration illustration--4"></div>
+          <p>Luna smiled, closed her eyes, and let the tiny lights carry her off to sleep.</p>
+        </div>
+        <span class="page-number">4</span>
+      </div>
+
+      <!-- BACK COVER -->
+      <div class="page page-cover" data-density="hard">
+        <div class="page-content cover cover--back" id="endingPage">
+          <h2>The End</h2>
+          <p class="cover-sub">sweet dreams ✦</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="nav-arrow nav-arrow--right" id="nextBtn" aria-label="Next page">›</button>
+  </main>
+
+  <p class="footer-note">Replace the text, illustrations, and cover above with your own story — see README.md for how.</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
